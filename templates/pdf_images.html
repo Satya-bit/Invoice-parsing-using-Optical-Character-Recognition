@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PDF to Images</title>
+</head>
+<body>
+	<h1>PDF to Images</h1>
+	{% if message %}
+		<div>{{ message }}</div>
+	{% endif %}
+	<form action="{{ url_for('pdf_images') }}" method="post" enctype="multipart/form-data">
+		<label for="pdf_file">Select PDF File:</label>
+		<input type="file" name="pdf_file" id="pdf_file"><br><br>
+		<input type="submit" value="Convert to Images">
+	</form>
+	{% if image_files %}
+		<h2>Image Files:</h2>
+		{% for image_file in image_files %}
+			<img src="{{ url_for('static', filename='images/' + image_file) }}" alt="{{ image_file }}">
+		{% endfor %}
+	{% endif %}
+</body>
+</html>

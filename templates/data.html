@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="/static/js/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+
+	<title>Invoice Table</title>
+	<style>
+		
+*{
+	font-family: 'Archivo', sans-serif;
+}
+
+		body {
+			background-color: #e6f2ff;
+
+			margin: 0;
+			padding: 0;
+		}
+
+		header{
+			background-color: #89b8eb;
+			display:flex;
+			padding-right: 2000px;
+			padding-bottom: 0px;
+			gap:30rem;
+			justify-content: center; /* Centers the content horizontally */
+			align-items: center; /* Centers the content vertically */
+		  
+		  }
+	  
+		.container {
+			margin: 0 ;
+			max-width: 1200px;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		h1 {
+			background-color: #89b8eb;
+			padding: 10px;
+			text-align: center;
+			margin: 0;
+			white-space: nowrap;
+		  
+	  
+		  }
+  
+
+			  table {
+			border-collapse: collapse;
+			margin-top: 20px;
+			width: 100%;
+		}
+		th, td {
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+			  border: 1px solid black;
+
+
+		}
+		th {
+			background-color: #f2f2f2;
+			font-weight: bold;
+			text-align: left;
+		}
+		td {
+			text-align: left;
+		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+			margin-top: 20px;
+			margin-right: 20px;
+		  }
+		  
+		  .dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #fff;
+			min-width: 160px;
+			z-index: 1;
+			border: 1px solid #ddd;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			right: 50;
+			bottom: -30px; /* move the dropdown options 50px up */
+			font-weight: bold;
+		  }
+
+		  .dropdown-content a {
+			display: block;
+			padding: 8px 12px;
+			text-decoration: none;
+			color: #333;
+			font-size: 14px;
+			
+
+		  }
+		  
+		  .dropdown:hover .dropdown-content {
+			display: block;
+		  }
+			
+			
+			
+		  .dropdown-content:hover {
+
+			background: linear-gradient(to bottom, #182848, #4b6cb7);
+			
+			}
+			
+		  .dropdown-content:active {
+			background: linear-gradient(to bottom, #182848, #4b6cb7);
+			}
+			.dropdown-content a:hover {
+			  color: #fff;
+			}
+
+	
+	
+	
+
+
+
+
+			
+.back {
+	display: inline-block;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	background: linear-gradient(to bottom, #4b6cb7, #182848);
+	color: #fff;
+	border: none;
+	transition: background-color 0.3s ease-in-out;
+  }
+  
+  .back:hover {
+	background: linear-gradient(to bottom, #182848, #4b6cb7);
+  }
+  
+  .back:active {
+	background: linear-gradient(to bottom, #182848, #4b6cb7);
+  }
+
+
+
+.Download {
+	display: inline-block;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	background: linear-gradient(to bottom, #4b6cb7, #182848);
+	color: #fff;
+	border: none;
+	transition: background-color 0.3s ease-in-out;
+  }
+  
+.Download:hover {
+	background: linear-gradient(to bottom, #182848, #4b6cb7);
+  }
+  
+.Download:active {
+	background: linear-gradient(to bottom, #182848, #4b6cb7);
+  }
+
+
+  td {
+	font-weight: 550;
+  }
+  
+  
+		  
+	</style>
+</head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<body>
+	<div class="container">
+		<header>
+		  <a href="/dashboard/"><img src="{{url_for('static',filename='images/Logo2.png')}}"  style="width: 100px; height: 89px;"></a>
+	
+		  <h1>INVOICE TABLE</h1>
+		  <div class="dropdown">
+			<i class="fas fa-user-circle fa-3x"></i>
+			<div class="dropdown-content">
+				<a href="/user/signout">SIGN OUT</a>
+			</div>
+		  </div>
+		</header>
+		<table>
+			<thead>
+				<tr>
+					<th></th> <!-- Placeholder for delete buttons -->
+
+					<th>Invoice Date</th>
+					<th>Invoice Due Date</th>
+					<th>Invoice Number</th>
+					<th>Order From</th>
+					<th>Company Address</th>
+					<th>Contact No</th>
+					<th>Bill To</th>
+					<th>Name</th>
+					<th>Shipping Address</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Items</th>
+					
+
+			  
+					<th>Currency</th>
+					<th>Subtotal</th>
+					<th>Shipping</th>
+					<th>Tax</th>
+					<th>Total</th>
+
+					<th>ABN</th>
+					<th>Rego</th>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Odometer</th>
+
+					
+
+				</tr>
+			</thead>
+			<tbody id="data-table">
+
+				<tr>
+
+					
+
+				</tr>
+				
+			</tbody>
+		</table>
+	<nav>
+		<div class="buttons">
+			<div class="dropdown">
+				<button class="Download">Download</button>
+				<div class="dropdown-content">
+					<a href="#" id="download-excel">Download Excel File</a>
+
+					<!-- <a href="#" id="download-xml">Download XML File</a> -->
+				</div>
+			</div>
+			 <button class="back" onclick="location.href='/dashboard/'">Back</button>
+
+			<!-- <button class="signout" onclick="location.href='/user/signout'">Sign Out</button> --> 
+
+		</div>
+	</nav>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+
+<script>
+	
+    //Skills API
+    $(document).ready(function() {
+        var token = localStorage.getItem('token')
+        $.ajax({
+          url: 'http://127.0.0.1:5001/invoices',
+          type: 'GET',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', token);
+        },
+          success: function(newData) {
+
+
+			  var tableRows = '';
+			
+			  //var newData = data.invoices
+			  //console.log(newData)
+              $.each(newData, function(index, record) {
+				const id = record._id.$oid;
+				tableRows += '<tr>';
+				tableRows += '<td>';
+				//tableRows += '<button class="edit-btn" data-id="' + record._id + '">Edit</button>';
+				//tableRows += '<button class="delete-btn" data-id="' + record._id + '">Delete</button>';
+				//tableRows += '<a href="/delete-invoice-"  + record._id + '">Delete</button>';
+				tableRows +=` <a class="update-btn" href="/update-invoice-${id}" data-toggle="tooltip" data-placement="top" title="Update"><i class="fas fa-edit"></i></a>`;
+
+
+				tableRows += `<a class="delete-btn" href="/delete-invoice-${id}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash-alt"></i></a>`;
+				
+				tableRows += '</td>';
+				//tableRows += '<td>' + (record.invoice_date ? record.invoice_date['$date'] : '') + '</td>';
+				//tableRows += '<td>' + (record.invoice_due_date ? record.invoice_due_date['$date'] : '') + '</td>';
+				tableRows += '<td>' + (record.invoice_date !== '' ? record.invoice_date['$date'] : '') + '</td>';
+				tableRows += '<td>' + (record.invoice_due_date && record.invoice_due_date !== 'null' ? record.invoice_due_date['$date'] : '') + '</td>';
+				
+				tableRows += '<td>' + (record.invoice_number !== 'null' ? record.invoice_number : '') + '</td>';
+                tableRows += '<td>' + (record.order_from !== 'null' ? record.order_from : '') + '</td>';
+                tableRows += '<td>' + (record.company_address !== 'null' ? record.company_address : '') + '</td>';
+                tableRows += '<td>' + (record.contact_no !== 'null' ? record.contact_no : '') + '</td>';
+                tableRows += '<td>' + (record.Bill_to !== 'null' ? record.Bill_to : '') + '</td>';
+                tableRows += '<td>' + (record.name !== 'null' ? record.name : '') + '</td>';
+                tableRows += '<td>' + (record.shipping_address !== 'null' ? record.shipping_address : '') + '</td>';
+                tableRows += '<td>' + (record.phone !== 'null' ? record.phone : '') + '</td>';
+                tableRows += '<td>' + (record.email !== 'null' ? record.email : '') + '</td>';
+    
+                // Create a new row for the items
+                var itemsHtml = '<td><table>';
+                itemsHtml += '<thead><tr><th>Qty</th><th>Unit Price</th><th>Product</th></tr></thead>';
+                itemsHtml += '<tbody>';
+    
+                if(!record.itemsHtmlGenerated) {
+                    $.each(record.items, function(i, item) {
+                        itemsHtml += '<tr><td>' + item.qty + '</td><td>' + item.unt_pr + '</td><td>' + item.product + '</td></tr>';
+                    });
+                    record.itemsHtmlGenerated = true;
+                }
+    
+                itemsHtml += '</tbody></table></td>';
+    
+                tableRows += itemsHtml;
+    
+                tableRows += '<td>' + (record.Currency !== 'null' ? record.Currency : '') + '</td>';
+                tableRows += '<td>' + (record.Subtotal !== 'null' ? record.Subtotal : '') + '</td>';
+                tableRows += '<td>' + (record.Shipping !== 'null' ? record.Shipping : '') + '</td>';
+                tableRows += '<td>' + (record.Tax !== 'null' ? record.Tax : '') + '</td>';
+                tableRows += '<td>' + (record.Total !== 'null' ? record.Total : '') + '</td>';
+
+				tableRows += '<td>' + (record.ABN !== 'null' ? record.ABN : '') + '</td>';
+				tableRows += '<td>' + (record.Rego !== 'null' ? record.Rego : '') + '</td>';
+				tableRows += '<td>' + (record.Make !== 'null' ? record.Make : '') + '</td>';
+				tableRows += '<td>' + (record.Model !== 'null' ? record.Model : '') + '</td>';
+				tableRows += '<td>' + (record.Odometer !== 'null' ? record.Odometer : '') + '</td>';
+
+
+
+
+
+
+                tableRows += '</tr>';
+            });
+			$('#data-table').append(tableRows);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+          }
+        });
+      });
+      
+    </script>  
+
+
+	<script>
+		document.getElementById("download-excel").addEventListener("click", function () {
+
+			/* generate worksheet */
+			var ws = XLSX.utils.table_to_sheet(document.querySelector("#data-table"));
+	
+			/* add column headers */
+			var headers = ["invoice_date", "invoice_due_date", "invoice_number","order_from","company_address","contact_no","Bill_to","name","shipping_address","phone","email","items","Currency","Subtotal","Shipping","Tax","Total","ABN","Rego","Make","Model","Odometer"];
+			XLSX.utils.sheet_add_aoa(ws, [headers], { origin: "B1" });
+	
+			/* generate workbook and add the worksheet */
+			var wb = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+	
+			/* save to file */
+			XLSX.writeFile(wb, "invoices.xlsx");
+		});
+	</script>
+
+	<!-- <script>
+		document.getElementById("download-xml").addEventListener("click", function () {
+		  
+		  // XML data to be downloaded
+		  var xmlData = '<?xml version="1.0" encoding="UTF-8"?><items><item><name>Product 1</name><price>10.00</price></item><item><name>Product 2</name><price>15.00</price></item></items>';
+		  
+		  // Create a new Blob object with the XML data
+		  var xmlBlob = new Blob([xmlData], { type: 'text/xml' });
+		  
+		  // Create a new URL object for the Blob object
+		  var xmlURL = URL.createObjectURL(xmlBlob);
+		  
+		  // Create a new anchor element to trigger the download
+		  var downloadLink = document.createElement("a");
+		  downloadLink.href = xmlURL;
+		  downloadLink.download = "items.xml";
+		  
+		  // Trigger the download
+		  document.body.appendChild(downloadLink);
+		  downloadLink.click();
+		  document.body.removeChild(downloadLink);
+		});
+	  </script> -->
+
+	  
+		
+
+</html>
+	

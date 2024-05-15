@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+
+</head>
+<style>
+  *{
+    font-family: 'Archivo', sans-serif;
+
+  }
+  
+</style>
+  <div class="card-wrapper">
+    <div class="card">
+      <h1 class="center">Log In</h1>
+      <form name="login_form" id="form">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="field" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="field" required>
+        <p class="error error--hidden"></p>
+        <input type="submit" value="Log In" class="btn">
+      </form>
+      <h5 style="font-size: 14px; text-align: center;">Not registered? <a href="/">Create an account</a></h5>
+      <h5 style="font-size: 14px; text-align: center;">Forgot your password? <a href="{{ url_for('forgot_password') }}">Reset it here</a></h5>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+  <script>    
+    $('form').submit(function(){
+      event.preventDefault();
+      fetch('/user/login', {
+        method: 'POST',
+        body: new FormData(event.target)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        localStorage.setItem('token', data.token)   
+        
+        
+      })
+    })
+  </script>
+  
+{% endblock %}

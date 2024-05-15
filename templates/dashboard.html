@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+
+</head>
+<style>
+  *{
+    font-family: 'Archivo', sans-serif;
+    font-weight: 550;
+
+  }
+  
+</style>
+<body> 
+  
+  <nav>
+    <div style="float:right">
+      <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
+    </div> 
+  </nav>
+
+  <div class="token"></div>
+  
+  <main>
+    <form class="form" action="/dashboard/" method="POST" enctype="multipart/form-data">
+      <div class="file-upload-wrapper" data-text="Select your file!">
+        <input name="pdf" id="upload" type="file" accept=".pdf" class="file-upload-field" value="">
+      </div>
+
+      <div id="error-message" style="color: red; display: none;">Please upload a PDF file.</div>
+  
+      <div style="position: fixed; top: 70%; left: 50%; transform: translate(-50%, -50%);">
+        <div class="d-flex justify-content-center">
+          <button id="submit-btn" class="btn btn-primary" type="submit">Submit</button>
+
+          <a href="/data/" class="btn btn-primary">View Data</a>
+        </div>
+      </div>
+    </form>
+  </main>
+  
+  
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="../static/js/main.js"></script>
+  <script>
+    // Add event listener to submit button
+
+    $(document).ready(function(){
+      var token = localStorage.getItem('token')
+      
+
+
+    })
+    $('#upload').change(function() {
+      // Get the uploaded file
+      var file = $('input[type="file"]')[0].files[0];
+      // Get the file extension
+      var extension = file.name.split('.').pop().toLowerCase();
+      // Check if the file is a PDF
+      if (extension !== 'pdf') {
+        // Show the error message
+        $('#error-message').show();
+        // Prevent the form from submitting
+        return false;
+      } else {
+        $('#error-message').hide();
+      }
+    });
+  </script>
+</body>
+
+{% endblock %}

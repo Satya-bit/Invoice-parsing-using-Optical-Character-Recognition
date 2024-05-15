@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <style>
+        .back {
+            display: inline-block;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            background: linear-gradient(to bottom, #4b6cb7, #182848);
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease-in-out;
+          }
+          
+          .back:hover {
+            background: linear-gradient(to bottom, #182848, #4b6cb7);
+          }
+          
+          .back:active {
+            background: linear-gradient(to bottom, #182848, #4b6cb7);
+          }
+        
+        
+        
+    </style>
+</head>
+  <h1 style="font-weight:bold; color:#f8f5f5;">Wrong File Uploaded</h1>
+  <p style="color:#f8f5f5;">Please upload the correct invoice.</p>
+  <button class="back" onclick="location.href='/dashboard/'">Back</button>
+
+{% endblock %}

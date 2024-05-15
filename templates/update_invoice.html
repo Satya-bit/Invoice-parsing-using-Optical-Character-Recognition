@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+  
+    <style>
+      *{
+        font-family: 'Archivo', sans-serif;
+      }
+      
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="number"],
+        textarea {
+            display: block;
+            margin-bottom: 20px;
+            width: 50%;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid black;
+        }
+    
+        button[type="submit"] {
+            margin-top: 20px;
+        }
+        form {
+          background-color: #e6f2ff;
+        }
+        h1 {
+          background-color: #89b8eb;
+          padding: 10px;
+          text-align: center;
+          margin: 0;
+
+        }
+        header{
+          background-color: #89b8eb;
+          display:flex;
+          gap:30rem;
+          align-items: center; /* Centers the content vertically */
+              
+          
+        }
+        html, body {
+          margin: 0;
+          padding: 0;
+        }
+        
+
+        .back{
+          display: inline-block;
+          padding: 8px 16px;
+          text-align: center;
+          text-decoration: none;
+          font-size: 16px;
+          border-radius: 4px;
+          cursor: pointer;
+          background: linear-gradient(to bottom, #4b6cb7, #182848);
+          color: #fff;
+          border: none;
+          transition: background-color 0.3s ease-in-out;
+          position: relative;
+          right: -100px;;
+          }
+
+          .back:hover {
+            background: linear-gradient(to bottom, #182848, #4b6cb7);
+            }
+            
+          .back:active {
+            background: linear-gradient(to bottom, #182848, #4b6cb7);
+            }
+          
+          
+          .update{
+              display: inline-block;
+              padding: 8px 16px;
+              text-align: center;
+              text-decoration: none;
+              font-size: 16px;
+              border-radius: 4px;
+              cursor: pointer;
+              background: linear-gradient(to bottom, #4b6cb7, #182848);
+              color: #fff;
+              border: none;
+              transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* add box-shadow to transition */
+            }
+    
+              .update:hover {
+                background: linear-gradient(to bottom, #182848, #4b6cb7);
+                box-shadow: 0px 0px 10px #182848; /* add box-shadow effect */
+
+                }
+                
+              .update:active {
+                background: linear-gradient(to bottom, #182848, #4b6cb7);
+                box-shadow: 0px 0px 5px #182848; /* add box-shadow effect */
+
+                }
+
+                .upd{
+                  display: inline-block;
+                  padding: 6px 14px;
+                  text-align: center;
+                  text-decoration: none;
+                  font-size: 16px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                  background: linear-gradient(to bottom, #4b6cb7, #182848);
+                  color: #fff;
+                  border: none;
+                  transition: background-color 0.3s ease-in-out;
+                  }
+        
+                  .upd:hover {
+                    background: linear-gradient(to bottom, #182848, #4b6cb7);
+                    }
+                    
+                  .upd:active {
+                    background: linear-gradient(to bottom, #182848, #4b6cb7);
+                    }
+
+                    .dropdown {
+                      position: relative;
+                      display: inline-block;
+                      margin-top: 20px;
+                      margin-right: 20px;
+                    }
+                    
+                    .dropdown-content {
+                      display: none;
+                      position: absolute;
+                      background-color: #fff;
+                      min-width: 160px;
+                      z-index: 1;
+                      border: 1px solid #ddd;
+                      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                      right: 50;
+                      bottom: -30px; /* move the dropdown options 50px up */
+                      font-weight: bold;
+                    }
+    
+                    .dropdown-content a {
+                      display: block;
+                      padding: 8px 12px;
+                      text-decoration: none;
+                      color: #333;
+                      font-size: 14px;
+                      
+
+                    }
+                    
+                    .dropdown:hover .dropdown-content {
+                      display: block;
+                    }
+                    .signout {
+                      display: inline-block;
+                      padding: 8px 16px;
+                      text-align: center;
+                      text-decoration: none;
+                      font-size: 16px;
+                      border-radius: 4px;
+                      cursor: pointer;
+                      background: linear-gradient(to bottom, #4b6cb7, #182848);
+                      color: #fff;
+                      border: none;
+                      transition: background-color 0.3s ease-in-out;
+                      margin-top: 100px;
+                      margin-left: 400px;
+                     
+                      }
+                      
+                      
+                      
+                    .dropdown-content:hover {
+    
+                      background: linear-gradient(to bottom, #182848, #4b6cb7);
+                      
+                      }
+                      
+                    .dropdown-content:active {
+                      background: linear-gradient(to bottom, #182848, #4b6cb7);
+                      }
+                      .dropdown-content a:hover {
+                        color: #fff;
+                      }
+                      
+                      
+                        
+                  
+    
+              
+        
+        
+    </style>
+    
+    <head>
+      <meta charset="utf-8">
+      <title>Update Invoice</title>
+    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <body>
+        <header>
+          <a href="/dashboard/"><img src="{{url_for('static',filename='images/Logo2.png')}}" style="width: 100px; height: 89px;"></a>
+          <h1 style="font-weight: bold;">UPDATE INVOICE</h1>
+          <div class="dropdown">
+           <i class="fas fa-user-circle fa-3x"></i>
+            <div class="dropdown-content">
+              <a href="/user/signout">SIGN OUT</a>
+            </div>
+          </div>
+        </header>
+      <form action="/update-invoice-{{ invoice._id }}" method="POST">
+      <div class="container"></div>
+       <div class="row">    
+        <div class=" col-md-6">
+         <div class="form-group">    
+          <label for="invoice_date" style="font-weight: bold;">Invoice Date:</label>
+          <input type="datetime-local" id="invoice_date" name="invoice_date" value="{{ invoice.invoice_date }}">
+        </div>
+       </div> 
+          <div class=" col-md-6">
+           <div class="form-group">
+           <label for="invoice_due_date" style="font-weight: bold;">Invoice Due Date:</label>
+           <input type="datetime-local" id="invoice_due_date" name="invoice_due_date" value="{{ invoice.invoice_due_date }}">
+          </div>
+         </div> 
+          <div class=" col-md-6">
+           <div class="form-group">
+            <label for="invoice_number" style="font-weight: bold;">Invoice Number:</label>
+            <input type="text" id="invoice_number" name="invoice_number" value="{% if invoice.invoice_number is not none %}{{ invoice.invoice_number }}{% endif %}">
+           </div>
+          </div>
+      
+           <div class=" col-md-6">
+
+            <div class="form-group">
+             <label for="order_from" style="font-weight: bold;">Order From:</label>
+             <input type="text" id="order_from" name="order_from" value="{% if invoice.order_from is not none %}{{ invoice.order_from }}{% endif %}">
+            </div>
+           </div>
+           <div class=" col-md-6">
+            <div class="form-group">
+             <label for="company_address" style="font-weight: bold;">Company Address:</label>
+             <input type="text" id="company_address" name="company_address" value="{% if invoice.company_address is not none and invoice.company_address !='null' %}{{ invoice.company_address }}{% endif %}">
+            </div>
+           </div> 
+           <div class=" col-md-6">
+             <div class="form-group">
+              <label for="contact_no" style="font-weight: bold;">Contact Number:</label>
+              <input type="text" id="contact_no" name="contact_no" value="{% if invoice.contact_no is not none and invoice.contact_no != 'null' %}{{ invoice.contact_no }}{% endif %}">
+             </div>
+          </div> 
+           <div class=" col-md-6">
+            <div class="form-group">
+              <label for="Bill_to" style="font-weight: bold;">Bill To:</label>
+              <input type="text" id="Bill_to" name="Bill_to" value="{% if invoice.Bill_to is not none and invoice.Bill_to !='null' %}{{ invoice.Bill_to }}{% endif %}">
+            </div>
+           </div> 
+           <div class=" col-md-6">
+            <div class="form-group">
+            <label for="name" style="font-weight: bold;">Name:</label>
+            <input type="text" id="name" name="name" value="{% if invoice.name is not none and invoice.name !='null' %}{{ invoice.name }}{% endif %}">
+            </div>
+           </div> 
+           <div class=" col-md-6">
+             <div class="form-group">
+             <label for="shipping_address" style="font-weight: bold;">Shipping Address:</label>
+             <input type="text" id="shipping_address" name="shipping_address" value="{% if invoice.shipping_address is not none and invoice.shipping_address !='null' %}{{ invoice.shipping_address }}{% endif %}">
+             </div>
+           </div> 
+           <div class=" col-md-6">
+             <div class="form-group">
+             <label for="phone" style="font-weight: bold;">Phone:</label>
+             <input type="text" id="phone" name="phone" value="{% if invoice.phone is not none and invoice.phone !='null' %}{{ invoice.phone }}{% endif %}">
+             </div>
+          </div> 
+           <div class=" col-md-6">
+             <div class="form-group">
+              <label for="email" style="font-weight: bold;">Email:</label>
+             <input type="email" id="email" name="email" value="{% if invoice.email is not none and invoice.email !='null' %}{{ invoice.email }}{% endif %}">
+             </div>
+           </div> 
+           <div class=" col-md-6">
+             <div class="form-group">     
+             <label for="items" style="font-weight: bold;">Items:</label>
+             <a href="{{ url_for('update_items', invoice_id=invoice._id) }}"><button id="update-items-btn" type="button" class="upd">Update Items</button></a>
+             </div>      
+           </div> 
+
+      <!-- <label for="items">Items:</label>
+      <textarea id="items" name="items">{{ items }}</textarea> -->
+           <div class=" col-md-6">
+            <div class="form-group">
+        
+             <label for="Currency" style="font-weight: bold;">Currency:</label>
+             <input type="text" id="Currency" name="Currency" value="{% if invoice.Currency is not none and invoice.Currency !='null' %}{{ invoice.Currency }}{% endif %}">
+            </div>
+          </div>
+        
+           <div class=" col-md-6">
+            <div class="form-group">  
+             <label for="Subtotal" style="font-weight: bold;">Subtotal:</label>
+             <input type="number" step="0.00001" min="1" id="Subtotal" name="Subtotal" value="{{ invoice.Subtotal }}" required>
+
+            </div>
+           </div>  
+           <div class=" col-md-6">
+            <div class="form-group">  
+              <label for="Shipping" style="font-weight: bold;">Shipping:</label>
+              <input type="number" step="0.00001" min="0" id="Shipping" name="Shipping" value="{{ invoice.Shipping }}" required>
+
+            </div>
+           </div>  
+           <div class=" col-md-6">
+             <div class="form-group">  
+               <label for="Tax" style="font-weight: bold;">Tax:</label>
+               <input type="number" step="0.00001" min="1" id="Tax" name="Tax" value="{{ invoice.Tax }}" required>
+
+             </div>
+           </div>  
+           <div class=" col-md-6">
+              <div class="form-group">  
+               <label for="Total" style="font-weight: bold;">Total:</label>
+               <input type="number" step="0.00001" min="1" id="Total" name="Total" value="{{ invoice.Total }}" required>
+
+              </div>
+           </div>  
+           <div class=" col-md-6">
+             <div class="form-group">  
+               <label for="ABN" style="font-weight: bold;">ABN:</label>
+               <input type="text" id="ABN" name="ABN" value="{% if invoice.ABN is not none and invoice.ABN !='null' %}{{ invoice.ABN }}{% endif %}">
+
+             </div>
+           </div>  
+           <div class=" col-md-6">
+             <div class="form-group">  
+               <label for="Rego" style="font-weight: bold;">Rego:</label>
+               <input type="text" id="Rego" name="Rego" value="{% if invoice.Rego is not none and invoice.Rego !='null' %}{{ invoice.Rego }}{% endif %}">
+      
+             </div>
+           </div>  
+           <div class=" col-md-6">
+            <div class="form-group">  
+             <label for="Make" style="font-weight: bold;">Make:</label>
+             <input type="text" id="Make" name="Make" value="{% if invoice.Make is not none and invoice.Make !='null' %}{{ invoice.Make }}{% endif %}">
+      
+            </div>
+           </div>  
+           <div class=" col-md-6">
+            <div class="form-group">  
+             <label for="Model" style="font-weight: bold;">Model:</label>
+             <input type="text" id="Model" name="Model" value="{% if invoice.Model is not none and invoice.Model !='null' %}{{ invoice.Model }}{% endif %}">
+      
+            </div>
+           </div>  
+           <div class=" col-md-6">
+            <div class="form-group">  
+             <label for="Odometer" style="font-weight: bold;">Odometer:</label>
+             <input type="number" step="0.00001" min="0" id="Odometer" name="Odometer" value="{% if invoice.Odometer is not none and invoice.Odometer !='null' %}{{ invoice.Odometer }}{% endif %}">
+            
+
+            </div>
+           </div>   
+         </div>
+        <button type="submit" class="update">Update Invoice</button>
+        <button class="back" onclick="location.href='/data/'">Back</button>
+      </div>
+     
+    </form>
+</body>
+
+</html>
+
+
