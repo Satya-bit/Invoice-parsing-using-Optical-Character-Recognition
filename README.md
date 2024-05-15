@@ -86,5 +86,9 @@ The software specifications for this project are focused on the development of a
 
 ![image](https://github.com/Satya-bit/Invoice-parsing-using-Optical-Character-Recognition/assets/70309925/267ce90a-ac13-48c6-ae53-1357df4a8869)
 
+# DEMO OF MY PROJECT
+
+https://github.com/Satya-bit/Invoice-parsing-using-Optical-Character-Recognition/assets/70309925/79c7f6c1-f5c5-4489-a2e6-51f547c5b47a
+
 
 
