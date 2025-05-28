@@ -22,6 +22,14 @@ In summary, the project will provide a secure, user-friendly interface for manag
 
 The software specifications for this project are focused on the development of a web application using the Python programming language as the primary backend language, the Flask web framework to provide a structured and modular approach to development, and the MongoDB database management system for efficient and scalable data storage and retrieval. The frontend of the web application is developed using a combination of HTML, CSS, and JavaScript to provide a clean and user-friendly interface. The development environment used for the project is Visual Studio Code.
 
+For OCR the custom_config = r'-l eng --oem 1 --psm 6 '
+
+This means language english
+
+OCR engine mode -1 meaning refers to LSTM_ONLY mode (Long Short-Term Memory). LSTM is a type of recurrent neural network (RNN) that Tesseract 4.00 and above uses for its main OCR processing. This is generally the most accurate and recommended mode for modern Tesseract versions.
+
+Page Segmentation Mode-6 means "Assume a single uniform block of text." This is a very common and effective mode for documents like invoices where the text is generally structured and flows in a consistent manner
+
 ![image](https://github.com/Satya-bit/Invoice-parsing-using-Optical-Character-Recognition/assets/70309925/2112e1ad-2b68-4120-a85b-e3c74484a8fa)
 
 # WORKFLOW
